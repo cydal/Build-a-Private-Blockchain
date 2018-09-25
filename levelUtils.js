@@ -66,3 +66,11 @@ function getHeight() {
         });
     });
 }
+
+
+module.exports = {
+    "addBlock": addBlock, 
+    "getBlock": getBlock, 
+    "getChain": getChain, 
+    "getHeight": getHeight
+};
