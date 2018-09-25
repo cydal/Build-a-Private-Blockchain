@@ -69,7 +69,7 @@ function getHeight() {
 
 
 module.exports = {
-    "addBlock": addBlock, 
+    "addBlock": pushBlock, 
     "getBlock": getBlock, 
     "getChain": getChain, 
     "getHeight": getHeight
