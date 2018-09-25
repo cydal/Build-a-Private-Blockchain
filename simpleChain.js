@@ -31,7 +31,7 @@ class Block{
 
 class Blockchain{
   constructor(){
-    this.chainHeight = 0;
+    this.chainHeight = -1;
     this.addBlock(new Block("First block in the chain - Genesis block"));
   }
 
@@ -51,7 +51,7 @@ class Blockchain{
     // Adding block object to chain
     //this.chain.push(newBlock);
     
-    await utils.pushBlock(newBlock.height, JSON.stringify(newBlock));
+    await utils.addBlock(newBlock.height, JSON.stringify(newBlock));
   }
 
   // Get block height
@@ -118,7 +118,7 @@ class Blockchain{
 let blockchain = new Blockchain();
 
 for (let i = 0; i < 10; i++) {
-  blockchain.addBlock("New Block " + i);
+  blockchain.addBlock(new Block("New Block " + i));
 }
 
 
