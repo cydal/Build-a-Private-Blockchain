@@ -24,11 +24,11 @@ function pushBlock(key, value) {
 
 
 // Get block from B with blockheight
-function getBlock(height) {
+function getBlock(key) {
     return new Promise((resolve, reject) => {
         db.get(key, function(err, value) {
             if (err) reject(err);
-            resolve(JSON.parse(value));
+            resolve(value);
         });
     });
 }
@@ -56,9 +56,10 @@ function getChain() {
 // get chain height
 function getHeight() {
     return new Promise((resolve, reject) => {
-        let i = 0;
+        let i = -1;
         db.createReadStream().on('data', function(data) {
             i++;
+            console.log(data.value);
         }).on('error', function(err) {
             reject(err);
         }).on('close', function() {

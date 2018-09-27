@@ -29,16 +29,23 @@ class Block{
 |  Class with a constructor for new blockchain 		|
 |  ================================================*/
 
-class Blockchain{
+class Blockchain {
   constructor(){
-    this.chainHeight = -1;
-    this.addBlock(new Block("First block in the chain - Genesis block"));
+
+    this.getChainHeight().then((height) => {
+      if (height === -1) {
+        this.addBlock(new Block("First block in the chain - Genesis block"));
+        console.log("Added Genesis Block");
+      }
+    });
   }
 
   // Add new block
   async addBlock(newBlock){
     // Block height
-    newBlock.height = this.chainHeight + 1;
+
+    let height = await this.getChainHeight();
+    newBlock.height = height + 1;
     // UTC timestamp
     newBlock.time = new Date().getTime().toString().slice(0,-3);
     // previous block hash
@@ -52,12 +59,16 @@ class Blockchain{
     //this.chain.push(newBlock);
     
     await utils.addBlock(newBlock.height, JSON.stringify(newBlock));
+
+    //Set current chain height to current block height. 
+    //this.chainHeight = newBlock.height;
+
+    console.log("Added Block #" + newBlock.height)
   }
 
   // Get block height
-    async getBlockHeight(){
-      const height = await utils.getBlockHeight();
-      return height;
+    async getChainHeight(){
+      return await utils.getHeight();
     }
 
     // get block
@@ -117,11 +128,11 @@ class Blockchain{
 
 let blockchain = new Blockchain();
 
+
+
 for (let i = 0; i < 10; i++) {
   blockchain.addBlock(new Block("New Block " + i));
 }
-
-
 
 setTimeout(function() {
   blockchain.validateChain();
