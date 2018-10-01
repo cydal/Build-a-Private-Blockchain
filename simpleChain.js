@@ -127,7 +127,7 @@ class Blockchain {
 
 module.exports = {"Blockchain": Blockchain};
 
-
+/** 
 let blockchain = new Blockchain();
 
 
@@ -139,3 +139,6 @@ for (let i = 0; i < 10; i++) {
 setTimeout(function() {
   blockchain.validateChain();
 }, 1000)
+
+
+*/
