@@ -125,6 +125,8 @@ class Blockchain {
     }
 }
 
+module.exports = {"Blockchain": Blockchain};
+
 
 let blockchain = new Blockchain();
 
