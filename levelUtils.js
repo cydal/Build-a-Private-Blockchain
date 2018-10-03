@@ -59,7 +59,7 @@ function getHeight() {
         let i = -1;
         db.createReadStream().on('data', function(data) {
             i++;
-            console.log(data.value);
+            //console.log(data.value);
         }).on('error', function(err) {
             reject(err);
         }).on('close', function() {
