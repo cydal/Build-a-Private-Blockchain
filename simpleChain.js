@@ -46,12 +46,19 @@ class Blockchain {
 
     let height = await this.getChainHeight();
     newBlock.height = height + 1;
+
+    //console.log(height);
+    //console.log(newBlock.height);
+
+
     // UTC timestamp
     newBlock.time = new Date().getTime().toString().slice(0,-3);
     // previous block hash
     if(newBlock.height>0){
       const prevBlock = await utils.getBlock(newBlock.height - 1);
-      newBlock.previousBlockHash = prevBlock.hash;
+      newBlock.previousBlockHash = "";
+      newBlock.previousBlockHash = JSON.parse(prevBlock).hash;
+
     }
     // Block hash with SHA256 using newBlock and converting to a string
     newBlock.hash = SHA256(JSON.stringify(newBlock)).toString();
@@ -60,10 +67,8 @@ class Blockchain {
     
     await utils.addBlock(newBlock.height, JSON.stringify(newBlock));
 
-    //Set current chain height to current block height. 
-    //this.chainHeight = newBlock.height;
+    console.log("Added Block # " + newBlock.height);
 
-    console.log("Added Block #" + newBlock.height)
   }
 
   // Get block height
@@ -125,7 +130,7 @@ class Blockchain {
     }
 }
 
-module.exports = {"Blockchain": Blockchain};
+module.exports = {"Blockchain": Blockchain, "Block": Block};
 
 /** 
 let blockchain = new Blockchain();

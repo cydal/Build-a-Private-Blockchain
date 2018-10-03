@@ -1,5 +1,6 @@
 
 const Blockchain = require('./simpleChain.js').Blockchain;
+let Blck = require('./simpleChain.js').Block;
 
 const express = require('express');
 const app = express();
@@ -29,11 +30,17 @@ let blockchain = new Blockchain();
 
 
 app.get('/block/:height', async (req, res) => {
-
-    const height = req.params.height;
-    const block = await blockchain.getBlock(height);
-    res.send(block);
     
+    try {
+        const height = req.params.height;
+        const block = await blockchain.getBlock(height);
+        res.send(block);
+    } catch(err) {
+        res.status(404).json({
+            "status": 404,
+            "message": "Incorrect Block Height"
+        });
+    }
     //res.send(req.url);
     //res.send(JSON.stringify(mockChain[0]));
 });
@@ -41,11 +48,18 @@ app.get('/block/:height', async (req, res) => {
 
 app.post('/block', async (req, res) => {
 
+    if (req.body.body === '' || req.body.body === undefined || req.body.body === null) {
+       //if body empty or no body - 400 Bad Request
+       res.status(400).json({
+           "status": 400,
+           "message": "Must contain content"
+       });
+    }
+
     //const length = Object.keys(mockChain).length;
-    const length = await blockchain.getChainHeight;
-    console.log(length);
-    mockChain[length] = req.body.body;
-    const response = blockchain.getBlock[length];
+    const height = await blockchain.getChainHeight;
+    await blockchain.addBlock(new Blck(req.body.body));
+    const response = await blockchain.getBlock[height];
 
     res.send(response);
 });
