@@ -48,7 +48,7 @@ app.get('/block/:height', async (req, res) => {
 
 app.post('/block', async (req, res) => {
 
-    if (req.body.body === '' || req.body.body === undefined || req.body.body === null) {
+    if (req.body.body === '' || req.body.body === undefined) {
        //if body empty or no body - 400 Bad Request
        res.status(400).json({
            "status": 400,
@@ -56,12 +56,16 @@ app.post('/block', async (req, res) => {
        });
     }
 
-    //const length = Object.keys(mockChain).length;
-    const height = await blockchain.getChainHeight;
+
+    const height = await blockchain.getChainHeight();
+    console.log(height);
     await blockchain.addBlock(new Blck(req.body.body));
-    const response = await blockchain.getBlock[height];
+    const response = await blockchain.getBlock(height);
 
     res.send(response);
+
+    //console.log(JSON.stringify(response));
+    //res.send(JSON.stringify(response));
 });
 
 

@@ -56,7 +56,6 @@ class Blockchain {
     // previous block hash
     if(newBlock.height>0){
       const prevBlock = await utils.getBlock(newBlock.height - 1);
-      newBlock.previousBlockHash = "";
       newBlock.previousBlockHash = JSON.parse(prevBlock).hash;
 
     }

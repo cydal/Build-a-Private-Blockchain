@@ -27,6 +27,9 @@ npm install level --save
 
 ## Testing
 
+
+#### Project 2 - Build a Private Blockchain
+
 To test code:
 1: Open a command prompt or shell terminal after install node.js.
 2: Enter a node session, also known as REPL (Read-Evaluate-Print-Loop).
@@ -59,3 +62,71 @@ for (var i = 0; i < inducedErrorBlocks.length; i++) {
 ```
 blockchain.validateChain();
 ```
+
+
+
+
+
+#### Project 3 Rest API for Private Blockchain
+
+
+To run server
+
+> node server.js
+
+
+The program contains two end points, this can be accessed with a program like curl or using a web browser  - 
+
+
+
+#### GET
+
+Example:
+
+> curl -v localhost:8000/block/{height}
+
+Example of response - 
+
+
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 179
+< ETag: W/"b3-+gxVYwE76EWjj/tJpiO4c4sQwxE"
+< Date: Wed, 03 Oct 2018 12:01:01 GMT
+< Connection: keep-alive
+{
+    "hash": "c99af57148f7d74691cb91c849e01a8ec7eceb18594f53c8a989b1861ecbfc3d",
+    "height": 0,
+    "body": "First block in the chain - Genesis block",
+    "time": "1538568045",
+    "previousBlockHash": ""
+}
+
+
+
+#### POST
+
+
+Example:
+
+
+> curl -v "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"Second Entry"}'
+
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 215
+< ETag: W/"d7-PpSzZTOCrFohvBN1jqn6yWaVePs"
+< Date: Wed, 03 Oct 2018 15:10:59 GMT
+< Connection: keep-alive
+
+{
+    "hash": "ebe088a2dc36140da06752f4da7b564656e0a4c55b3546ea63dad323ce9c4d41",
+    "height": 15,
+    "body": "Third Entry",
+    "time": "1538579376",
+    "previousBlockHash": "ef20173685ed05f058b95d79704119d68af6e7e9abdee419bcfc508ac9950906"
+}
+
+
