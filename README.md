@@ -88,13 +88,13 @@ Example:
 Example of response - 
 
 
-< HTTP/1.1 200 OK
-< X-Powered-By: Express
-< Content-Type: application/json; charset=utf-8
-< Content-Length: 179
-< ETag: W/"b3-+gxVYwE76EWjj/tJpiO4c4sQwxE"
-< Date: Wed, 03 Oct 2018 12:01:01 GMT
-< Connection: keep-alive
+> HTTP/1.1 200 OK
+ X-Powered-By: Express
+ Content-Type: application/json; charset=utf-8
+ Content-Length: 179
+ ETag: W/"b3-+gxVYwE76EWjj/tJpiO4c4sQwxE"
+ Date: Wed, 03 Oct 2018 12:01:01 GMT
+ Connection: keep-alive
 {
     "hash": "c99af57148f7d74691cb91c849e01a8ec7eceb18594f53c8a989b1861ecbfc3d",
     "height": 0,
@@ -113,13 +113,13 @@ Example:
 
 > curl -v "POST" "http://localhost:8000/block" -H 'Content-Type: application/json' -d $'{"body":"Second Entry"}'
 
-< HTTP/1.1 200 OK
-< X-Powered-By: Express
-< Content-Type: application/json; charset=utf-8
-< Content-Length: 215
-< ETag: W/"d7-PpSzZTOCrFohvBN1jqn6yWaVePs"
-< Date: Wed, 03 Oct 2018 15:10:59 GMT
-< Connection: keep-alive
+> HTTP/1.1 200 OK
+ X-Powered-By: Express
+ Content-Type: application/json; charset=utf-8
+ Content-Length: 215
+ ETag: W/"d7-PpSzZTOCrFohvBN1jqn6yWaVePs"
+ Date: Wed, 03 Oct 2018 15:10:59 GMT
+ Connection: keep-alive
 
 {
     "hash": "ebe088a2dc36140da06752f4da7b564656e0a4c55b3546ea63dad323ce9c4d41",
